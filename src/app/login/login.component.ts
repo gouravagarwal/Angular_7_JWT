@@ -2,6 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import * as CryptoJS from 'crypto-js';
 
 import { AuthenticationService } from '@/_services';
 
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authenticationService.login(this.f.username.value, CryptoJS.SHA256(this.f.password.value).toString())
             .pipe(first())
             .subscribe(
                 data => {
