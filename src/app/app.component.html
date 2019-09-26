@@ -3,11 +3,12 @@
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/">Home</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a class="nav-item nav-link" [routerLink]="['/update']">Update Gender</a>
     </div>
 </nav>
 
 <!-- main app container -->
-<div class="jumbotron">
+<div class="jumbotron"  [ngStyle]="{'background-color': (currentUser && currentUser.token !== null) ? getBckGrndColor(currentUser.token) : white }">
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">

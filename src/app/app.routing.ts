@@ -3,6 +3,7 @@
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { AuthGuard } from './_guards';
+import { UpdateComponent } from './update/update.component';
 
 const appRoutes: Routes = [
     {
@@ -13,6 +14,11 @@ const appRoutes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'update',
+        component: UpdateComponent,
+        canActivate: [AuthGuard]
     },
 
     // otherwise redirect to home

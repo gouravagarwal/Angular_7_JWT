@@ -7,7 +7,7 @@ import { UserService, AuthenticationService } from '@/_services';
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
     users: User[] = [];
-
+  
     constructor(private userService: UserService) { }
 
     ngOnInit() {
