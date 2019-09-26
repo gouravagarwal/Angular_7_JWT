@@ -22,8 +22,9 @@ export class UpdateComponent {
             this.currentUser = x;
             this.updateForm = this.formBuilder.group({
                 firstName: [x.firstName, Validators.required],
-                gender: [x.gender]
+                gender: [x.gender.toLowerCase().toString()]
             });
+
         })
     }
 
@@ -31,15 +32,22 @@ export class UpdateComponent {
         this.loading = true;
 
         if (!this.updateForm.invalid) {
-            this.userService.update(this.currentUser).subscribe(x => {
+            let user = this.currentUser;
+            let values = this.updateForm.value;
+            user.gender = values.gender;
+            user.firstName = values.firstName;
+
+            this.userService.update(user).subscribe(x => {
                 this.router.navigate["/"];
+                this.loading = false;
             },
                 error => {
                     this.error = error;
+
                     this.loading = false;
                 })
         }
-        else{
+        else {
             this.loading = false;
             this.error = "Complete the form properly";
         }
